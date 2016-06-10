@@ -36,6 +36,6 @@
     "url": "https://github.com/sockjs/sockjs-node.git"
   },
   "scripts": {
-    "install": "make build"
+    "install": "coffee -o lib/ -c src/*.coffee"
   }
 }
