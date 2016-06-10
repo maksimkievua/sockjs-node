@@ -4,7 +4,8 @@
 # For the license see COPYING.
 # ***** END LICENSE BLOCK *****
 
-crypto = require('crypto')
+md5 = require('md5')
+crypt = require('crypt')
 
 exports.array_intersection = array_intersection = (arr_a, arr_b) ->
     r = []
@@ -40,14 +41,7 @@ exports.buffer_concat = (buf_a, buf_b) ->
     return dst
 
 exports.md5_hex = (data) ->
-    return crypto.createHash('md5')
-            .update(data)
-            .digest('hex')
-
-exports.sha1_base64 = (data) ->
-    return crypto.createHash('sha1')
-            .update(data)
-            .digest('base64')
+    return md5(data)
 
 exports.timeout_chain = (arr) ->
     arr = arr.slice(0)
@@ -113,6 +107,6 @@ exports.parseCookie = (cookie_header) ->
     return cookies
 
 exports.random32 = () ->
-    foo = crypto.randomBytes(4)
+    foo = crypt.randomBytes(4)
     v = [foo[0], foo[1], foo[2], foo[3]]
     return  v[0] + (v[1]*256) + (v[2]*256*256) + (v[3]*256*256*256)
